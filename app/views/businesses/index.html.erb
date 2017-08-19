@@ -1,3 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Businesses</h1>
+
+<% @places.each do |place| %>
+  <p><%=place.name%></p>
+<% end %>
