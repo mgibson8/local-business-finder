@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Enter ground zero post code:</h1>
-<%= form_with url: businesses_list_path do |f| %>
+<h1>Enter ground zero post code and blast radius:</h1>
+<%= form_with url: businesses_list_path, method: :get do |f| %>
   <%= f.text_field :postcode %>
+  <%= f.text_field :radius %>
   <%= f.submit 'Search!' %>
 <% end %>

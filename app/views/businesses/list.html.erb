@@ -1,2 +1,22 @@
 <p id="notice"><%= notice %></p>
-<h1>Results for <%=@postcode%></h1>
+<h1>Searching a <%= @radius %> mile radius around <%=@postcode%></h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Types</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @places.each do |place| %>
+    <tr>
+      <td><%= place.name %></td>
+      <td><%= place.formatted_address %></td>
+      <td><%= place.formatted_phone_number %></td>
+      <td><%= place.types.map(&:humanize).join(', ') %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

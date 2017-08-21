@@ -7,8 +7,14 @@ class BusinessesController < ApplicationController
 
   def list
     @postcode = params[:postcode]
-    location  = Geokit::Geocoders::GoogleGeocoder.geocode(@postcode)
-    places    = @client.spots(53.5354934, -1.1757078, radius: 1000, detail: true) #1000m
+    @radius   = params[:radius].to_i
+    redirect_to root_url and return unless @postcode.present?
+    radius_in_metres = @radius * 1.60934 * 1000
+    location   = Geokit::Geocoders::GoogleGeocoder.geocode(@postcode)
+    @places    = @client.spots(location.lat, location.lng, radius: @radius*1.60934*1000, detail: true) #1000m
+    respond_to do |format|
+      format.html
+    end
   end
 
   private
