@@ -12,6 +12,7 @@ class BusinessesController < ApplicationController
     radius_in_metres = @radius * 1.60934 * 1000
     location   = Geokit::Geocoders::GoogleGeocoder.geocode(@postcode)
     @places    = @client.spots(location.lat, location.lng, radius: @radius*1.60934*1000, detail: true) #1000m
+    
     respond_to do |format|
       format.html
     end

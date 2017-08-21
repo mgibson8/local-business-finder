@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Enter ground zero post code and blast radius:</h1>
-<%= form_with url: businesses_list_path, method: :get do |f| %>
+<%= form_with url: businesses_list_path, method: :get, local: true do |f| %>
   <%= f.label :postcode, "Post Code" %>
   <%= f.text_field :postcode %>
   <%= f.label :postcode, "Radius (miles)" %>
