@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Businesses</h1>
-
-<% @places.each do |place| %>
-  <p><%=place.name%></p>
+<h1>Enter ground zero post code:</h1>
+<%= form_with url: businesses_path do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit value: 'Go!' %>
 <% end %>
