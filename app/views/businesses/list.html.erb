@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>Searching a <%= @radius %> mile radius around <%=@postcode%></h1>
+<%= link_to 'Download CSV Report', businesses_download_csv_path(format: :csv, lat: @location.lat, lng: @location.lng, rad: @radius_in_metres)%>
 <table>
   <thead>
     <tr>

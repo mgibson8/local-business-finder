@@ -9,12 +9,30 @@ class BusinessesController < ApplicationController
     @postcode = params[:postcode]
     @radius   = params[:radius].to_i
     redirect_to root_url and return unless @postcode.present?
-    radius_in_metres = @radius * 1.60934 * 1000
-    location   = Geokit::Geocoders::GoogleGeocoder.geocode(@postcode)
-    @places    = @client.spots(location.lat, location.lng, radius: @radius*1.60934*1000, detail: true) #1000m
-    
+    @radius_in_metres = @radius * 1.60934 * 1000
+    @location   = Geokit::Geocoders::GoogleGeocoder.geocode(@postcode)
+    @places    = @client.spots(@location.lat, @location.lng, radius: @radius*1.60934*1000, detail: true)
+
     respond_to do |format|
       format.html
+    end
+  end
+
+  def download_csv
+    lat    = params[:lat]
+    lng    = params[:lng]
+    radius = params[:rad]
+    places = @client.spots(lat, lng, radius: radius, detail: true)
+
+    businesses = Array.new
+    businesses << ["Name", "Address", "Phone", "Type"]
+    places.each do |place|
+      businesses << [place.name, place.formatted_address, place.formatted_phone_number, place.types.map(&:humanize).join('/')]
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data businesses.to_csv, filename: "companies-#{Date.today}.csv", type: "text/csv"}
     end
   end
 
@@ -25,6 +43,6 @@ class BusinessesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_params
-      params.require(:business).permit(:postcode)
+      params.require(:business).permit(:postcode, :radius, :lat, :lng, :rad)
     end
 end
