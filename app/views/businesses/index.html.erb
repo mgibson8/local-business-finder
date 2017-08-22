@@ -1,12 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Enter ground zero post code and blast radius:</h1>
-<%= form_with url: businesses_list_path, method: :get, id: 'search-form' do |f| %>
-  <%= f.label :postcode, "Post Code" %>
-  <%= f.text_field :postcode %>
-  <%= f.label :postcode, "Radius (miles)" %>
-  <%= f.text_field :radius %>
-  <%= f.submit 'Search!', id: 'search-button' %>
+<h1>Local Business Finder</h1>
+
+<p>Enter a postcode and search radius below: </p>
+<%= form_with url: businesses_list_path, method: :get, id: 'search-form', class: 'search-form' do |f| %>
+  <%= f.text_field :postcode, placeholder: 'Post Code' %>
+  <%= f.text_field :radius, placeholder: 'Radius (miles)' %>
+  <%#= f.submit "Search <i class=\"material-icons right\">send</i>".html_safe, id: 'search-button', class: 'btn waves-effect waves-light' %>
+  <%= button_tag(type: 'submit', class: "btn waves-effect waves-light", id: 'search-button') do %>
+    Search<i class="material-icons right">send</i>
+  <% end %>
 <% end %>
 
 <div class="spinner">
