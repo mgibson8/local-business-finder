@@ -1,18 +1,13 @@
-<thead>
-  <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Phone</th>
-    <th>Types</th>
-  </tr>
-</thead>
-<tbody>
+<ul class="collection">
   <% @places.each do |place| %>
-  <tr>
-    <td><%= place.name %></td>
-    <td><%= place.formatted_address %></td>
-    <td><%= place.formatted_phone_number %></td>
-    <td><%= place.types.map(&:humanize).join(', ') %></td>
-  </tr>
+    <li class="collection-item avatar">
+      <i class="material-icons circle">location_on</i>
+      <span class="title"><%= place.name %></span>
+      <p><%= place.formatted_address %> <br>
+         <%= place.formatted_phone_number %> <br>
+         <%= place.types.map(&:titleize).join(', ') %>
+      </p>
+      <a href="<%= place.url %>" class="secondary-content" target="_blank"><i class="material-icons">send</i></a>
+    </li>
   <% end %>
-</tbody>
+<ul>
