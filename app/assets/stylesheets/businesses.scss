@@ -48,5 +48,19 @@
 }
 
 .search-form {
-  width: 30%;
+
+}
+
+.checkbox-grid {
+  //display: block;
+  display: none;
+}
+
+.checkbox-container {
+  display: inline-block;
+  width: 20%;
+}
+
+.search-button {
+  margin-top: 20px;
 }
