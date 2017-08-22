@@ -1,10 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Enter ground zero post code and blast radius:</h1>
-<%= form_with url: businesses_list_path, method: :get, local: true do |f| %>
+<%= form_with url: businesses_list_path, method: :get, id: 'search-form' do |f| %>
   <%= f.label :postcode, "Post Code" %>
   <%= f.text_field :postcode %>
   <%= f.label :postcode, "Radius (miles)" %>
   <%= f.text_field :radius %>
   <%= f.submit 'Search!' %>
 <% end %>
+
+<table id='results-table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Types</th>
+    </tr>
+  </thead>
+  <tbody id='results-body'>
+    
+  </tbody>
+</table>

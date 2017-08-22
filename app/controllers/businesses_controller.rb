@@ -13,8 +13,9 @@ class BusinessesController < ApplicationController
     @location   = Geokit::Geocoders::GoogleGeocoder.geocode(@postcode)
     @places    = @client.spots(@location.lat, @location.lng, radius: @radius*1.60934*1000, detail: true)
 
+
     respond_to do |format|
-      format.html
+      format.js
     end
   end
 

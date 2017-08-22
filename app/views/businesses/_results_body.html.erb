@@ -1,0 +1,8 @@
+<% @places.each do |place| %>
+<tr>
+  <td><%= place.name %></td>
+  <td><%= place.formatted_address %></td>
+  <td><%= place.formatted_phone_number %></td>
+  <td><%= place.types.map(&:humanize).join(', ') %></td>
+</tr>
+<% end %>
