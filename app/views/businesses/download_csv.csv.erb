@@ -1,0 +1,6 @@
+<% export = CSV.generate(" ", { headers: ['Name', 'Address', 'Phone', 'Types'], write_headers: true, encoding: "UTF-8"}) do |csv| %>
+<% @businesses.each do |place| %>
+	<% csv.add_row place %>
+<% end %>
+<% end %>
+<%= export.lstrip.html_safe %>

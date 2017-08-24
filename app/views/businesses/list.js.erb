@@ -1,2 +1,3 @@
 $('#results-table').append("<%= j render partial: 'results_body', locals: {places: @places} %>");
-$(".spinner, #search-button").toggle()
+$(".spinner, #search-button").toggle();
+$('#csv-btn').append("<%= j link_to 'Download CSV', businesses_download_csv_path(lat: @location.lat, lng: @location.lng, rad: @radius_in_metres, format: :csv) %>");
